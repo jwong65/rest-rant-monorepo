@@ -4,10 +4,6 @@ const bcrypt = require('bcrypt')
 
 const { User } = db
 
-router.post('/', async (req, res) => {
-    console.log('IN HERE')
-})
-
 router.post('/', async (req, res)=>{
     let user = await User.findOne({
         where: { email: req.body.email}
