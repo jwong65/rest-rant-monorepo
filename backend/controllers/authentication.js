@@ -28,14 +28,9 @@ router.get('profile', async(req,res)=>{
     console.log(req.session.userId)
     try {
         const [authenticationMethod, token] = req.headers.authorization.split('')
-        // let user = await User.findOne({
-        //     where: {
-        //         userId: req.session.userId
-        //     }
-        // })
-        if (authenticationMethod=='Bearer'){
+        if (authenticationMethod == 'Bearer'){
             const result = await jwt.decode(process.env.JWT_SECRET, token)
-            const {id} = result.value
+            const { id } = result.value
 
 
             let user = await User.findOne({
@@ -43,9 +38,8 @@ router.get('profile', async(req,res)=>{
                     userId: id
                 }
             })
-
+            res.json(user)
         }
-        res.json(user)
     } catch (error) {
         res.json(null)
     }
