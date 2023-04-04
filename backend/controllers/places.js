@@ -95,9 +95,7 @@ router.post('/:placeId/comments', async (req, res) => {
     if (!place) {
         res.status(404).json({ message: `Could not find place with id "${placeId}"` })
     }
-    if(!req.currentUser){
-        r
-    }
+    
    
     let currentUser;
     try {
@@ -156,7 +154,7 @@ router.delete('/:placeId/comments/:commentId', async (req, res) => {
             res.status(404).json({ message: `Could not find comment with id "${commentId}" for place with id "${placeId}"` })
         } else if(comment.authorId !== req.currentUser?.userId){
             res.status(403).json({
-                message: 'You do not have permission'
+                message: `You do not have permission to delete comment "${comment.commentId}"`
             })
         }
         else{
