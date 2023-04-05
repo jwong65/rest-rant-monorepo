@@ -139,6 +139,7 @@ router.post('/:placeId/comments', async (req, res) => {
 })
 
 router.delete('/:placeId/comments/:commentId', async (req, res) => {
+    console.error()
     let placeId = Number(req.params.placeId)
     let commentId = Number(req.params.commentId)
 
